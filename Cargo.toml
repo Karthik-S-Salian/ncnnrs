@@ -1,7 +1,7 @@
 [package]
 name = "ncnnrs"
 version = "0.1.7"
-edition = "2021"
+edition = "2024"
 authors = ["baiyue"]
 description = " Rust implementation of ncnn, a lightweight neural network inference framework, with separated static library for cross-platform compilation."
 repository = "https://github.com/Baiyuetribe/ncnnrs"
@@ -12,17 +12,14 @@ exclude = ["demo/*"]
 
 
 [dependencies]
-anyhow = "1.0.86"
-encoding_rs = "0.8.34"
-libc = "0.2.155"
-
+anyhow = "1.0.98"
+encoding_rs = "0.8.35"
+libc = "0.2.172"
 
 [build-dependencies]
-bindgen = "0.69.4"
-
+bindgen = "0.72.0"
 
 [lints.rust]
-#unsafe_code = "forbid"
 warnings = "allow" # deny, warn, allow, or forbid
 
 [features]

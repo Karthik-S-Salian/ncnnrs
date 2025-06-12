@@ -4,3 +4,6 @@
 Cargo.lock
 .DS_Store
 /tmp
+
+.env*
+/ncnn-src
