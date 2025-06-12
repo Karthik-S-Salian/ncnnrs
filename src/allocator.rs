@@ -12,7 +12,7 @@ impl Allocator {
     /// Using the allocator when creating matrix results in a segmentation fault.
     pub unsafe fn new() -> crate::allocator::Allocator {
         Allocator {
-            ptr: ncnn_allocator_create_pool_allocator(),
+            ptr: unsafe { ncnn_allocator_create_pool_allocator() },
         }
     }
 
@@ -23,7 +23,7 @@ impl Allocator {
     /// Using the allocator when creating matrix results in a segmentation fault.
     pub unsafe fn new_unlocked() -> crate::allocator::Allocator {
         Allocator {
-            ptr: ncnn_allocator_create_unlocked_pool_allocator(),
+            ptr: unsafe { ncnn_allocator_create_unlocked_pool_allocator() },
         }
     }
 

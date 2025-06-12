@@ -26,7 +26,7 @@ unsafe extern "C" fn empty_read(
     buf: *mut ::std::os::raw::c_void,
     size: size_t,
 ) -> size_t {
-    memset(buf, 0, size as usize);
+    unsafe { memset(buf, 0, size as usize) };
     size
 }
 
@@ -42,7 +42,7 @@ impl DataReader {
     /// Must not be used until scan and read functions are set.
     pub unsafe fn new() -> Self {
         Self {
-            ptr: ncnn_datareader_create(),
+            ptr: unsafe { ncnn_datareader_create() },
         }
     }
 
@@ -59,11 +59,11 @@ impl DataReader {
     }
 
     pub unsafe fn set_scan(&mut self, function_ptr: Option<ScanFn>) {
-        (*(self.ptr)).scan = function_ptr;
+        (unsafe { *(self.ptr) }).scan = function_ptr;
     }
 
     pub unsafe fn set_read(&mut self, function_ptr: Option<ReadFn>) {
-        (*(self.ptr)).read = function_ptr;
+        (unsafe { *(self.ptr) }).read = function_ptr;
     }
 
     pub(crate) fn ptr(&self) -> ncnn_datareader_t {

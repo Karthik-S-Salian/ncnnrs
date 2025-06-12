@@ -233,11 +233,11 @@ impl Mat {
     /// Data pointer must not be aliased, it must be valid for the entire lifetime of Mat and it must be of correct size.
     pub unsafe fn new_external_1d(w: i32, data: *mut c_void, alloc: Option<&Allocator>) -> Self {
         Self {
-            ptr: ncnn_mat_create_external_1d(
+            ptr: unsafe { ncnn_mat_create_external_1d(
                 w,
                 data,
                 alloc.map(Allocator::ptr).unwrap_or(core::ptr::null_mut()),
-            ),
+            ) },
         }
     }
 
@@ -253,12 +253,12 @@ impl Mat {
         alloc: Option<&Allocator>,
     ) -> Self {
         Self {
-            ptr: ncnn_mat_create_external_2d(
+            ptr: unsafe { ncnn_mat_create_external_2d(
                 w,
                 h,
                 data,
                 alloc.map(Allocator::ptr).unwrap_or(core::ptr::null_mut()),
-            ),
+            ) },
         }
     }
 
@@ -275,13 +275,13 @@ impl Mat {
         alloc: Option<&Allocator>,
     ) -> Self {
         Self {
-            ptr: ncnn_mat_create_external_3d(
+            ptr: unsafe { ncnn_mat_create_external_3d(
                 w,
                 h,
                 c,
                 data,
                 alloc.map(Allocator::ptr).unwrap_or(core::ptr::null_mut()),
-            ),
+            ) },
         }
     }
 
@@ -299,14 +299,14 @@ impl Mat {
         alloc: Option<&Allocator>,
     ) -> Self {
         Self {
-            ptr: ncnn_mat_create_external_4d(
+            ptr: unsafe { ncnn_mat_create_external_4d(
                 w,
                 h,
                 d,
                 c,
                 data,
                 alloc.map(Allocator::ptr).unwrap_or(core::ptr::null_mut()),
-            ),
+            ) },
         }
     }
 
